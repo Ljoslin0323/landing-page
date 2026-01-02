@@ -1,14 +1,18 @@
 import { useState } from 'react'
 import Popup from './components/Popup'
+import Dashboard from './components/Dashboard'
 import './App.css'
 
 function App() {
   const [username, setUsername] = useState('')
   const [email, setEmail] = useState('')
   const [showPopup, setShowPopup] = useState(false)
+  const [currentView, setCurrentView] = useState('landing')
+  const [submittedUser, setSubmittedUser] = useState({ username: '', email: '' })
 
   const handleSubmit = (e) => {
     e.preventDefault()
+    setSubmittedUser({ username, email })
     setShowPopup(true)
     setUsername('')
     setEmail('')
@@ -16,6 +20,16 @@ function App() {
 
   const closePopup = () => {
     setShowPopup(false)
+    setCurrentView('dashboard')
+  }
+
+  const handleLogout = () => {
+    setCurrentView('landing')
+    setSubmittedUser({ username: '', email: '' })
+  }
+
+  if (currentView === 'dashboard') {
+    return <Dashboard user={submittedUser} onLogout={handleLogout} />
   }
 
   return (
