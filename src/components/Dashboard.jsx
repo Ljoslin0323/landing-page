@@ -30,7 +30,7 @@ function MiniAvatar({ config }) {
   )
 }
 
-function Dashboard({ user, onLogout, onGoToProfile, avatarConfig }) {
+function Dashboard({ user, onLogout, onGoToProfile, onGoToSettings, avatarConfig }) {
   const widgets = [
     { title: 'Profile Views', value: '1,234', icon: '👁️' },
     { title: 'Messages', value: '56', icon: '✉️' },
@@ -59,7 +59,7 @@ function Dashboard({ user, onLogout, onGoToProfile, avatarConfig }) {
             <ul>
               <li className="active">Home</li>
               <li className="nav-link" onClick={onGoToProfile}>Profile</li>
-              <li>Settings</li>
+              <li className="nav-link" onClick={onGoToSettings}>Settings</li>
               <li>Analytics</li>
             </ul>
           </nav>

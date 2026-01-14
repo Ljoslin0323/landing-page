@@ -2,6 +2,7 @@ import { useState, useEffect } from 'react'
 import Popup from './components/Popup'
 import Dashboard from './components/Dashboard'
 import Profile from './components/Profile'
+import Settings from './components/Settings'
 import './App.css'
 
 function App() {
@@ -39,6 +40,13 @@ function App() {
     messagesCount: 0,
     profileViews: 0,
     sharesCount: 0
+  })
+
+  // Settings state
+  const [settings, setSettings] = useState({
+    darkMode: false,
+    notifications: true,
+    soundEffects: false
   })
 
   // Check and award trophies based on current state
@@ -158,6 +166,22 @@ function App() {
     handleFeatureUse('dashboard')
   }
 
+  const goToSettings = () => {
+    setCurrentView('settings')
+    handleFeatureUse('settings')
+  }
+
+  if (currentView === 'settings') {
+    return (
+      <Settings
+        onBack={goToDashboard}
+        settings={settings}
+        onSettingsChange={setSettings}
+        onFeatureUse={handleFeatureUse}
+      />
+    )
+  }
+
   if (currentView === 'profile') {
     return (
       <Profile
@@ -179,6 +203,7 @@ function App() {
         user={submittedUser}
         onLogout={handleLogout}
         onGoToProfile={goToProfile}
+        onGoToSettings={goToSettings}
         avatarConfig={avatarConfig}
       />
     )
