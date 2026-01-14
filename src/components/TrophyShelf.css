@@ -1,0 +1,248 @@
+.trophy-shelf-container {
+  background: linear-gradient(135deg, #1a1a2e 0%, #16213e 100%);
+  border: 1px solid rgba(255, 255, 255, 0.15);
+  border-radius: 20px;
+  padding: 1.5rem;
+  min-width: 600px;
+  max-width: 800px;
+  color: #fff;
+}
+
+.shelf-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 2rem;
+  padding-bottom: 1rem;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.shelf-header h2 {
+  margin: 0;
+  font-size: 1.5rem;
+}
+
+.trophy-stats {
+  display: flex;
+  align-items: baseline;
+  gap: 0.2rem;
+}
+
+.earned-count {
+  font-size: 2rem;
+  font-weight: bold;
+  color: #ffd700;
+}
+
+.total-count {
+  font-size: 1rem;
+  opacity: 0.6;
+}
+
+.close-shelf-btn {
+  padding: 0.5rem 1rem;
+  background: rgba(255, 255, 255, 0.1);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  border-radius: 8px;
+  color: #fff;
+  cursor: pointer;
+}
+
+.close-shelf-btn:hover {
+  background: rgba(255, 255, 255, 0.15);
+}
+
+/* 3D Shelf Effect */
+.shelf-3d {
+  perspective: 1000px;
+}
+
+.shelf-row {
+  margin-bottom: 2rem;
+}
+
+.shelf-label {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  margin-bottom: 0.8rem;
+}
+
+.category-icon {
+  font-size: 1.2rem;
+}
+
+.category-name {
+  font-size: 0.9rem;
+  opacity: 0.8;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+}
+
+.shelf-board {
+  position: relative;
+  transform-style: preserve-3d;
+  transform: rotateX(5deg);
+}
+
+.trophies-row {
+  display: flex;
+  gap: 1rem;
+  padding: 1rem;
+  background: rgba(255, 255, 255, 0.03);
+  border-radius: 12px 12px 0 0;
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  border-bottom: none;
+}
+
+.shelf-wood {
+  height: 12px;
+  background: linear-gradient(
+    180deg,
+    #8b4513 0%,
+    #a0522d 30%,
+    #8b4513 60%,
+    #654321 100%
+  );
+  border-radius: 0 0 4px 4px;
+  box-shadow:
+    0 4px 8px rgba(0, 0, 0, 0.4),
+    inset 0 2px 4px rgba(255, 255, 255, 0.1);
+  transform: rotateX(-10deg) translateY(-2px);
+  transform-origin: top;
+}
+
+/* Trophy Items */
+.trophy-item {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.4rem;
+  min-width: 100px;
+  padding: 0.5rem;
+  transition: transform 0.3s ease;
+}
+
+.trophy-item.earned {
+  cursor: default;
+}
+
+.trophy-item.earned:hover {
+  transform: scale(1.05);
+}
+
+.trophy-item.locked {
+  opacity: 0.4;
+  filter: grayscale(0.8);
+}
+
+.trophy-pedestal {
+  width: 60px;
+  height: 60px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background: linear-gradient(
+    135deg,
+    rgba(255, 215, 0, 0.2) 0%,
+    rgba(255, 215, 0, 0.1) 100%
+  );
+  border-radius: 12px;
+  border: 2px solid rgba(255, 215, 0, 0.3);
+  position: relative;
+}
+
+.trophy-item.earned .trophy-pedestal {
+  background: linear-gradient(
+    135deg,
+    rgba(255, 215, 0, 0.3) 0%,
+    rgba(255, 215, 0, 0.15) 100%
+  );
+  border-color: rgba(255, 215, 0, 0.5);
+  box-shadow:
+    0 0 15px rgba(255, 215, 0, 0.3),
+    inset 0 0 10px rgba(255, 215, 0, 0.1);
+}
+
+.trophy-item.locked .trophy-pedestal {
+  background: rgba(255, 255, 255, 0.05);
+  border-color: rgba(255, 255, 255, 0.1);
+}
+
+.trophy-emoji {
+  font-size: 2rem;
+  transition: transform 0.3s ease;
+}
+
+.trophy-item.earned:hover .trophy-emoji {
+  transform: scale(1.2) rotate(-5deg);
+}
+
+.trophy-name {
+  font-size: 0.75rem;
+  font-weight: 600;
+  text-align: center;
+  max-width: 100px;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.trophy-desc {
+  font-size: 0.65rem;
+  opacity: 0.5;
+  text-align: center;
+}
+
+/* Empty State */
+.empty-message {
+  text-align: center;
+  padding: 2rem;
+  opacity: 0.6;
+}
+
+.empty-message p {
+  margin: 0.5rem 0;
+}
+
+/* Recently Earned Glow */
+.trophy-item.earned.recent .trophy-pedestal {
+  animation: trophy-glow 2s ease-in-out infinite;
+}
+
+@keyframes trophy-glow {
+  0%, 100% {
+    box-shadow:
+      0 0 15px rgba(255, 215, 0, 0.3),
+      inset 0 0 10px rgba(255, 215, 0, 0.1);
+  }
+  50% {
+    box-shadow:
+      0 0 25px rgba(255, 215, 0, 0.5),
+      0 0 40px rgba(255, 215, 0, 0.3),
+      inset 0 0 15px rgba(255, 215, 0, 0.2);
+  }
+}
+
+/* Responsive */
+@media (max-width: 700px) {
+  .trophy-shelf-container {
+    min-width: auto;
+    width: 100%;
+    padding: 1rem;
+  }
+
+  .trophies-row {
+    flex-wrap: wrap;
+    justify-content: center;
+  }
+
+  .trophy-item {
+    min-width: 80px;
+  }
+
+  .shelf-header {
+    flex-wrap: wrap;
+    gap: 1rem;
+  }
+}

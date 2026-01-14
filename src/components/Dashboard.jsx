@@ -1,6 +1,36 @@
 import './Dashboard.css'
 
-function Dashboard({ user, onLogout }) {
+// Mini avatar display for header
+function MiniAvatar({ config }) {
+  const frameStyles = {
+    simple: '2px solid rgba(255, 255, 255, 0.3)',
+    ornate: '2px double #646cff',
+    neon: '2px solid #646cff',
+    pixel: '2px solid #646cff',
+    trophy: '2px solid gold'
+  }
+
+  return (
+    <div
+      className="mini-avatar"
+      style={{
+        backgroundColor: config.color,
+        borderRadius: config.base === 'circle' ? '50%' :
+                     config.base === 'square' ? '15%' :
+                     config.base === 'rounded' ? '30%' : '40%',
+        border: frameStyles[config.frame] || frameStyles.simple,
+        boxShadow: config.frame === 'neon' ? `0 0 8px ${config.color}` : 'none'
+      }}
+    >
+      {config.glasses ? (
+        config.glasses === 'sunglasses' ? '😎' :
+        config.glasses === 'monocle' ? '🧐' : '🤓'
+      ) : '😊'}
+    </div>
+  )
+}
+
+function Dashboard({ user, onLogout, onGoToProfile, avatarConfig }) {
   const widgets = [
     { title: 'Profile Views', value: '1,234', icon: '👁️' },
     { title: 'Messages', value: '56', icon: '✉️' },
@@ -13,8 +43,13 @@ function Dashboard({ user, onLogout }) {
       <header className="dashboard-header">
         <h1>Dashboard</h1>
         <div className="header-right">
+          {avatarConfig && (
+            <button onClick={onGoToProfile} className="avatar-btn">
+              <MiniAvatar config={avatarConfig} />
+            </button>
+          )}
           <span className="welcome-text">Welcome, {user.username}</span>
-          <button onClick={onLogout} className="logout-btn">Logout</button>
+          <button onClick={onLogout} className="logout-btn glow-btn">Logout</button>
         </div>
       </header>
 
@@ -23,7 +58,7 @@ function Dashboard({ user, onLogout }) {
           <nav>
             <ul>
               <li className="active">Home</li>
-              <li>Profile</li>
+              <li className="nav-link" onClick={onGoToProfile}>Profile</li>
               <li>Settings</li>
               <li>Analytics</li>
             </ul>

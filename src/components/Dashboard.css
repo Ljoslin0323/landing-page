@@ -136,3 +136,35 @@
   font-size: 1.5rem;
   font-weight: 600;
 }
+
+/* Mini Avatar in Header */
+.avatar-btn {
+  background: none;
+  border: none;
+  cursor: pointer;
+  padding: 0;
+  transition: transform 0.2s;
+}
+
+.avatar-btn:hover {
+  transform: scale(1.1);
+}
+
+.mini-avatar {
+  width: 36px;
+  height: 36px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 1rem;
+  transition: box-shadow 0.2s;
+}
+
+/* Clickable Nav Link */
+.nav-link {
+  cursor: pointer;
+}
+
+.nav-link:hover {
+  background: rgba(100, 108, 255, 0.2);
+}
